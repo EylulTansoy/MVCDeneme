@@ -44,6 +44,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -89,19 +95,93 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\css\blog-home.css" />
+    <Content Include="Assets\index.html" />
+    <Content Include="Assets\vendor\bootstrap\css\bootstrap-grid.css" />
+    <Content Include="Assets\vendor\bootstrap\css\bootstrap-grid.min.css" />
+    <Content Include="Assets\vendor\bootstrap\css\bootstrap-reboot.css" />
+    <Content Include="Assets\vendor\bootstrap\css\bootstrap-reboot.min.css" />
+    <Content Include="Assets\vendor\bootstrap\css\bootstrap.css" />
+    <Content Include="Assets\vendor\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Assets\vendor\bootstrap\js\bootstrap.bundle.js" />
+    <Content Include="Assets\vendor\bootstrap\js\bootstrap.bundle.min.js" />
+    <Content Include="Assets\vendor\bootstrap\js\bootstrap.js" />
+    <Content Include="Assets\vendor\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Assets\vendor\jquery\jquery.js" />
+    <Content Include="Assets\vendor\jquery\jquery.min.js" />
+    <Content Include="Assets\vendor\jquery\jquery.slim.js" />
+    <Content Include="Assets\vendor\jquery\jquery.slim.min.js" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AboutController.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PictureController.cs" />
+    <Compile Include="Controllers\PostsController.cs" />
+    <Compile Include="Controllers\RolesController.cs" />
+    <Compile Include="Controllers\TagsController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="DBContext\MyContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807071449498_create table.cs" />
+    <Compile Include="Migrations\201807071449498_create table.Designer.cs">
+      <DependentUpon>201807071449498_create table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807071457260_qwe.cs" />
+    <Compile Include="Migrations\201807071457260_qwe.Designer.cs">
+      <DependentUpon>201807071457260_qwe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Post.cs" />
+    <Compile Include="Models\Role.cs" />
+    <Compile Include="Models\Tag.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
+    <Content Include="Assets\vendor\bootstrap\css\bootstrap.css.map" />
+    <Content Include="Assets\vendor\bootstrap\css\bootstrap.min.css.map" />
+    <Content Include="Assets\vendor\bootstrap\js\bootstrap.bundle.js.map" />
+    <Content Include="Assets\vendor\bootstrap\js\bootstrap.bundle.min.js.map" />
+    <Content Include="Assets\vendor\bootstrap\js\bootstrap.js.map" />
+    <Content Include="Assets\vendor\bootstrap\js\bootstrap.min.js.map" />
+    <Content Include="Assets\vendor\jquery\jquery.min.map" />
+    <Content Include="Assets\vendor\jquery\jquery.slim.min.map" />
     <None Include="packages.config" />
+    <Content Include="Views\Shared\_LayoutPage.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\About\Index.cshtml" />
+    <Content Include="Views\Contact\Index.cshtml" />
+    <Content Include="Views\Picture\Index.cshtml" />
+    <Content Include="Views\Shared\_searchBar.cshtml" />
+    <Content Include="Views\Shared\_categoriesBar.cshtml" />
+    <Content Include="Views\Shared\_sideBar.cshtml" />
+    <Content Include="Views\Posts\Create.cshtml" />
+    <Content Include="Views\Posts\Delete.cshtml" />
+    <Content Include="Views\Posts\Details.cshtml" />
+    <Content Include="Views\Posts\Edit.cshtml" />
+    <Content Include="Views\Posts\Index.cshtml" />
+    <Content Include="Views\Roles\Create.cshtml" />
+    <Content Include="Views\Roles\Delete.cshtml" />
+    <Content Include="Views\Roles\Details.cshtml" />
+    <Content Include="Views\Roles\Edit.cshtml" />
+    <Content Include="Views\Roles\Index.cshtml" />
+    <Content Include="Views\Tags\Create.cshtml" />
+    <Content Include="Views\Tags\Delete.cshtml" />
+    <Content Include="Views\Tags\Details.cshtml" />
+    <Content Include="Views\Tags\Edit.cshtml" />
+    <Content Include="Views\Tags\Index.cshtml" />
+    <Content Include="Views\Users\Create.cshtml" />
+    <Content Include="Views\Users\Delete.cshtml" />
+    <Content Include="Views\Users\Details.cshtml" />
+    <Content Include="Views\Users\Edit.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -111,8 +191,14 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
-    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201807071449498_create table.resx">
+      <DependentUpon>201807071449498_create table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807071457260_qwe.resx">
+      <DependentUpon>201807071457260_qwe.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
